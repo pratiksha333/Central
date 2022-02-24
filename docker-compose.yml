@@ -4,7 +4,7 @@ services:
   db:
     image: mysql:5.7
     volumes:
-      - db_data:/var/lib/mysql
+      - ./php/online-shopping-system/database/onlineshop.sql:/docker-entrypoint-initdb.d/onlineshop.sql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
@@ -17,10 +17,10 @@ services:
       - db
     image: php:7.3.3-apache
     volumes:
-      - wordpress_data:/var/www/html
+      - ./php/online-shopping-system:/var/www/html
     ports:
       - "8000:80"
     restart: always
 volumes:
-  db_data: {}
-  wordpress_data: {}
+  ./php/online-shopping-system/database/onlineshop.sql: {}
+  ./php/online-shopping-system: {}
