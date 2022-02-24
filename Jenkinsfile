@@ -2,29 +2,20 @@ node{
 
     stage('SCM Checkout')
     {
-        git url: 'https://github.com/pratiksha333/Central.git'
+        git credentialsId: 'b5adaad4-c434-433b-bbae-da0153425eb8', url: 'https://github.com/pratiksha333/Central.git'
     }
     
     stage('Run Docker Compose File')
     {
-        sh 'sudo docker-compose build'
-        sh 'sudo docker-compose up -d'
+        sh 'docker-compose build'
+        sh 'docker-compose up -d'
     }
-  stage('PUSH image to Docker Hub')
+    stage('PUSH image to Docker Hub')
     {
-      /* withCredentials([string(credentialsId: 'DockerHubPassword', variable: '9970036244')]) 
+        withCredentials([string(credentialsId: 'DockerHubPassword', variable: 'DHPWD')]) 
         {
-            sh "docker login -u pratiksha26493 -p ${9970036244}"
+            sh "docker login -u pratiksha26493 -p ${DHPWD}"
         }
-        sh 'docker pull vardhanns/phpmysql_app'
-        */
-        //docker.withRegistry( 'https://registry.hub.docker.com', 'DockerHubPassword' ) {
-             
-             sh 'sudo docker login -u "pratiksha26493" -p "9970036244" docker.io'
-             //sh 'sudo docker push pratiksha26493/mysql'
-             //sh 'sudo docker push pratiksha26493/job1_web1.0'
-             sh 'sudo docker push pratiksha26493/job1_web2.0'
-            // sh 'docker push pratiksha26493/mysql'
-          
+        sh 'docker push pratiksha26493/php_mysql_app'
     }
 }
