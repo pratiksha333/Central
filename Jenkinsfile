@@ -16,11 +16,11 @@ node{
         {
             sh "docker login -u pratiksha26493 -p ${9970036244}"
         }
-        sh 'docker push vardhanns/phpmysql_app'
+        sh 'docker pull vardhanns/phpmysql_app'
         */
         //docker.withRegistry( 'https://registry.hub.docker.com', 'DockerHubPassword' ) {
              
-             sh 'sudo docker login -u "pratiksha26493" -p "Zephyr@17" docker.io'
+             sh 'sudo docker login -u "pratiksha26493" -p "9970036244" docker.io'
              //sh 'sudo docker push pratiksha26493/mysql'
              //sh 'sudo docker push pratiksha26493/job1_web1.0'
              sh 'sudo docker push pratiksha26493/job1_web2.0'
